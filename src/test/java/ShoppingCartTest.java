@@ -3,6 +3,9 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 public class ShoppingCartTest extends BaseTest{
 
     @Test
@@ -18,5 +21,16 @@ public class ShoppingCartTest extends BaseTest{
         addButton.click();
         WebElement cartButton = driver.findElement(By.cssSelector(".shopping_cart_link"));
         cartButton.click();
+        WebElement produckt = driver.findElement(By.cssSelector(".inventory_item_name"));
+        boolean isProducktDisplayed = produckt.isDisplayed();
+
+        assertTrue(isProducktDisplayed, "error message: product not found");
+
+        WebElement price = driver.findElement(By.cssSelector(".inventory_item_price"));
+        boolean isPriceDisplayed = price.isDisplayed();
+
+        assertTrue(isPriceDisplayed);
+
+        assertEquals(isPriceDisplayed, 29.99);
     }
 }
